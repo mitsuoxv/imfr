@@ -33,12 +33,7 @@ imf_data_one <- function(database_id, indicator, country, start,
         } else
             # Check if requested indicator and frequency is available
             overview <- raw_dl$CompactData$DataSet$Series
-            if (is.null(overview)) {
-                if (u != length(country)) next else
-                stop(sprintf(
-                '%s is not available for your query.', indicator),
-                call. = FALSE)
-            }
+            if (is.null(overview)) next
 
             available_freq <- overview$`@FREQ`
             if (!(freq %in% available_freq)) stop(sprintf(
